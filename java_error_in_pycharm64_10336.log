@@ -1,0 +1,539 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 32744 bytes for ChunkPool::allocate
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (./src/hotspot/share/memory/arena.cpp:81), pid=10336, tid=10456
+#
+# JRE version: OpenJDK Runtime Environment JBR-11.0.9.11-1145.21-jcef (11.0.9+11) (build 11.0.9+11-b1145.21)
+# Java VM: OpenJDK 64-Bit Server VM JBR-11.0.9.11-1145.21-jcef (11.0.9+11-b1145.21, mixed mode, tiered, compressed oops, concurrent mark sweep gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: exit -Xms128m -Xmx750m -XX:ReservedCodeCacheSize=512m -XX:+UseConcMarkSweepGC -XX:SoftRefLRUPolicyMSPerMB=50 -XX:CICompilerCount=2 -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -ea -Dsun.io.useCanonCaches=false -Djdk.http.auth.tunneling.disabledSchemes="" -Djdk.attach.allowAttachSelf=true -Djdk.module.illegalAccess.silent=true -Dkotlinx.coroutines.debug=off -Djb.vmOptionsFile=C:\Users\VEDIT\AppData\Roaming\JetBrains\PyCharmCE2020.3\pycharm64.exe.vmoptions -Djava.library.path=C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\\bin;C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\\bin\server -Didea.platform.prefix=PyCharmCore -Dide.native.launcher=true -Didea.vendor.name=JetBrains -Didea.paths.selector=PyCharmCE2020.3 -XX:ErrorFile=C:\Users\VEDIT\java_error_in_pycharm64_%p.log -XX:HeapDumpPath=C:\Users\VEDIT\java_error_in_pycharm64.hprof 
+
+Host: Intel(R) Core(TM) i5-3437U CPU @ 1.90GHz, 4 cores, 3G,  Windows 10 , 64 bit Build 18362 (10.0.18362.1500)
+Time: Mon May 17 11:18:49 2021 E. Africa Standard Time elapsed time: 156.977176 seconds (0d 0h 2m 36s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000297fb800):  VMThread "VM Thread" [stack: 0x000000002a420000,0x000000002a520000] [id=10456] _threads_hazard_ptr=0x000000002cdcbed0
+
+Stack: [0x000000002a420000,0x000000002a520000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x0000000005d40dad]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x5ed3ca]
+V  [jvm.dll+0x722725]
+V  [jvm.dll+0x723c7d]
+V  [jvm.dll+0x724295]
+V  [jvm.dll+0x72424b]
+V  [jvm.dll+0x5ec818]
+V  [jvm.dll+0x5ecfb8]
+C  [ntdll.dll+0xa1fff]
+C  [ntdll.dll+0x6aad9]
+C  [ntdll.dll+0xa0c6e]
+C  0x0000000005d40dad
+
+VM_Operation (0x000000002ac1ecc0): CollectForMetadataAllocation, mode: safepoint, requested by thread 0x000000002a095000
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x000000002cdcbed0, length=30, elements={
+0x0000000002115800, 0x0000000029800000, 0x000000002980b000, 0x000000002a08a800,
+0x000000002a08d800, 0x000000002a08f000, 0x000000002a095000, 0x000000002a099000,
+0x000000002a1ee000, 0x000000002a1fc000, 0x000000002b1ae800, 0x000000002a292800,
+0x000000002a2db000, 0x000000002b277000, 0x000000002b349000, 0x000000002b590800,
+0x000000002b591000, 0x000000002b872000, 0x000000002b138000, 0x000000002b13d800,
+0x000000002b13b800, 0x000000002b139800, 0x000000002b13e800, 0x000000002b13c000,
+0x000000002b13a800, 0x000000002b13d000, 0x000000002b139000, 0x000000002f78c000,
+0x000000002f788800, 0x000000002f78b000
+}
+
+Java Threads: ( => current thread )
+  0x0000000002115800 JavaThread "main" [_thread_blocked, id=14060, stack(0x0000000000050000,0x0000000000150000)]
+  0x0000000029800000 JavaThread "Reference Handler" daemon [_thread_blocked, id=2476, stack(0x000000002a520000,0x000000002a620000)]
+  0x000000002980b000 JavaThread "Finalizer" daemon [_thread_blocked, id=8864, stack(0x000000002a620000,0x000000002a720000)]
+  0x000000002a08a800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=9892, stack(0x000000002a820000,0x000000002a920000)]
+  0x000000002a08d800 JavaThread "Attach Listener" daemon [_thread_blocked, id=920, stack(0x000000002a920000,0x000000002aa20000)]
+  0x000000002a08f000 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=5188, stack(0x000000002aa20000,0x000000002ab20000)]
+  0x000000002a095000 JavaThread "C1 CompilerThread0" daemon [_thread_blocked, id=10108, stack(0x000000002ab20000,0x000000002ac20000)]
+  0x000000002a099000 JavaThread "Sweeper thread" daemon [_thread_blocked, id=4828, stack(0x000000002ac20000,0x000000002ad20000)]
+  0x000000002a1ee000 JavaThread "Service Thread" daemon [_thread_blocked, id=9872, stack(0x000000002ad20000,0x000000002ae20000)]
+  0x000000002a1fc000 JavaThread "Common-Cleaner" daemon [_thread_blocked, id=6200, stack(0x000000002b020000,0x000000002b120000)]
+  0x000000002b1ae800 JavaThread "Periodic tasks thread" daemon [_thread_blocked, id=10260, stack(0x000000002ba20000,0x000000002bb20000)]
+  0x000000002a292800 JavaThread "ApplicationImpl pooled thread 1" [_thread_blocked, id=7100, stack(0x000000002be20000,0x000000002bf20000)]
+  0x000000002a2db000 JavaThread "ApplicationImpl pooled thread 2" [_thread_blocked, id=11180, stack(0x000000002bf20000,0x000000002c020000)]
+  0x000000002b277000 JavaThread "IndexInfrastructure Pool[ApplicationImpl pooled thread 4]" [_thread_blocked, id=5044, stack(0x000000002c860000,0x000000002c960000)]
+  0x000000002b349000 JavaThread "Java2D Disposer" daemon [_thread_blocked, id=14244, stack(0x000000002de70000,0x000000002df70000)]
+  0x000000002b590800 JavaThread "AWT-Shutdown" [_thread_blocked, id=9952, stack(0x000000002df70000,0x000000002e070000)]
+  0x000000002b591000 JavaThread "AWT-Windows" daemon [_thread_in_native, id=7336, stack(0x000000002e070000,0x000000002e170000)]
+  0x000000002b872000 JavaThread "AWT-EventQueue-0" [_thread_blocked, id=8344, stack(0x000000002e2c0000,0x000000002e3c0000)]
+  0x000000002b138000 JavaThread "Netty Builtin Server 1" [_thread_in_native, id=12684, stack(0x000000002efc0000,0x000000002f0c0000)]
+  0x000000002b13d800 JavaThread "ApplicationImpl pooled thread 5" [_thread_blocked, id=5004, stack(0x000000002b920000,0x000000002ba20000)]
+  0x000000002b13b800 JavaThread "ApplicationImpl pooled thread 6" [_thread_blocked, id=7500, stack(0x000000002c220000,0x000000002c320000)]
+  0x000000002b139800 JavaThread "ApplicationImpl pooled thread 7" [_thread_blocked, id=8820, stack(0x0000000030790000,0x0000000030890000)]
+  0x000000002b13e800 JavaThread "JobScheduler FJ pool 0/3" daemon [_thread_blocked, id=12356, stack(0x0000000031ca0000,0x0000000031da0000)]
+  0x000000002b13c000 JavaThread "JobScheduler FJ pool 1/3" daemon [_thread_blocked, id=1664, stack(0x0000000031fa0000,0x00000000320a0000)]
+  0x000000002b13a800 JavaThread "JobScheduler FJ pool 2/3" daemon [_thread_blocked, id=10088, stack(0x00000000320a0000,0x00000000321a0000)]
+  0x000000002b13d000 JavaThread "ApplicationImpl pooled thread 8" [_thread_blocked, id=12232, stack(0x00000000325a0000,0x00000000326a0000)]
+  0x000000002b139000 JavaThread "ApplicationImpl pooled thread 9" [_thread_blocked, id=11956, stack(0x0000000030890000,0x0000000030990000)]
+  0x000000002f78c000 JavaThread "Netty Builtin Server 2" [_thread_in_native, id=1384, stack(0x0000000033aa0000,0x0000000033ba0000)]
+  0x000000002f788800 JavaThread "Preloader Pool[ApplicationImpl pooled thread 10]" [_thread_blocked, id=4688, stack(0x0000000033ba0000,0x0000000033ca0000)]
+  0x000000002f78b000 JavaThread "ApplicationImpl pooled thread 11" [_thread_blocked, id=9848, stack(0x0000000034d50000,0x0000000034e50000)]
+
+Other Threads:
+=>0x00000000297fb800 VMThread "VM Thread" [stack: 0x000000002a420000,0x000000002a520000] [id=10456] _threads_hazard_ptr=0x000000002cdcbed0
+  0x000000002a1ef000 WatcherThread [stack: 0x000000002ae20000,0x000000002af20000] [id=9424]
+  0x000000000212a000 GCTaskThread "GC Thread#0" [stack: 0x0000000026140000,0x0000000026240000] [id=12848]
+  0x000000002a28b000 GCTaskThread "GC Thread#1" [stack: 0x000000002bb20000,0x000000002bc20000] [id=9964]
+  0x000000002a28c000 GCTaskThread "GC Thread#2" [stack: 0x000000002bc20000,0x000000002bd20000] [id=4960]
+  0x000000002a290000 GCTaskThread "GC Thread#3" [stack: 0x000000002bd20000,0x000000002be20000] [id=13132]
+  0x000000000216b800 ConcurrentGCThread "CMS Main Thread" [stack: 0x0000000029520000,0x0000000029620000] [id=11668]
+
+Threads with active compile tasks:
+C1 CompilerThread0 158214 5309       3       com.intellij.ui.scale.UserScaleContext::addUpdateListener (43 bytes)
+
+VM state:at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x0000000002113750] Threads_lock - owner thread: 0x00000000297fb800
+[0x0000000002114f80] Heap_lock - owner thread: 0x000000002a095000
+[0x00000000021149e0] MethodData_lock - owner thread: 0x000000002a095000
+
+Heap address: 0x00000000d1200000, size: 750 MB, Compressed Oops mode: 32-bit
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3
+Compressed class space size: 1073741824 Address: 0x0000000100000000
+
+Heap:
+ par new generation   total 39296K, used 37956K [0x00000000d1200000, 0x00000000d3ca0000, 0x00000000e0c00000)
+  eden space 34944K,  96% used [0x00000000d1200000, 0x00000000d32d1260, 0x00000000d3420000)
+  from space 4352K, 100% used [0x00000000d3420000, 0x00000000d3860000, 0x00000000d3860000)
+  to   space 4352K,   0% used [0x00000000d3860000, 0x00000000d3860000, 0x00000000d3ca0000)
+ concurrent mark-sweep generation total 87424K, used 47353K [0x00000000e0c00000, 0x00000000e6160000, 0x0000000100000000)
+ Metaspace       used 59703K, capacity 61834K, committed 62020K, reserved 1112064K
+  class space    used 6557K, capacity 7398K, committed 7524K, reserved 1048576K
+
+Card table byte_map: [0x0000000026240000,0x00000000263c0000] _byte_map_base: 0x0000000025bb7000
+
+Marking Bits: (CMSBitMap*) 0x000000000216a710
+ Bits: [0x0000000026900000, 0x00000000270d0000)
+
+Mod Union Table: (CMSBitMap*) 0x000000000216a7b0
+ Bits: [0x0000000000400000, 0x000000000041f400)
+
+Polling page: 0x00000000001d0000
+
+Metaspace:
+
+Usage:
+  Non-class:     53.16 MB capacity,    51.90 MB ( 98%) used,     1.09 MB (  2%) free+waste,   178.06 KB ( <1%) overhead. 
+      Class:      7.22 MB capacity,     6.40 MB ( 89%) used,   751.30 KB ( 10%) free+waste,    89.25 KB (  1%) overhead. 
+       Both:     60.38 MB capacity,    58.30 MB ( 97%) used,     1.82 MB (  3%) free+waste,   267.31 KB ( <1%) overhead. 
+
+Virtual space:
+  Non-class space:       62.00 MB reserved,      53.22 MB ( 86%) committed 
+      Class space:        1.00 GB reserved,       7.35 MB ( <1%) committed 
+             Both:        1.06 GB reserved,      60.57 MB (  6%) committed 
+
+Chunk freelists:
+   Non-Class:  60.00 KB
+       Class:  26.00 KB
+        Both:  86.00 KB
+
+MaxMetaspaceSize: 17179869184.00 GB
+CompressedClassSpaceSize: 1.00 GB
+
+CodeHeap 'non-profiled nmethods': size=259328Kb used=2699Kb max_used=2699Kb free=256628Kb
+ bounds [0x0000000016000000, 0x00000000162b0000, 0x0000000025d40000]
+CodeHeap 'profiled nmethods': size=259264Kb used=11590Kb max_used=11590Kb free=247673Kb
+ bounds [0x00000000062d0000, 0x0000000006e30000, 0x0000000016000000]
+CodeHeap 'non-nmethods': size=5696Kb used=1366Kb max_used=1411Kb free=4329Kb
+ bounds [0x0000000005d40000, 0x0000000005fb0000, 0x00000000062d0000]
+ total_blobs=6081 nmethods=5253 adapters=740
+ compilation: enabled
+              stopped_count=0, restarted_count=0
+ full_count=0
+
+Compilation events (20 events):
+Event: 156.599 Thread 0x000000002a095000 nmethod 5299 0x0000000006e1df10 code [0x0000000006e1e0c0, 0x0000000006e1e1f8]
+Event: 156.599 Thread 0x000000002a095000 5300       3       java.lang.reflect.Field::setAccessible (21 bytes)
+Event: 156.599 Thread 0x000000002a095000 nmethod 5300 0x0000000006e1e310 code [0x0000000006e1e520, 0x0000000006e1eaa8]
+Event: 156.599 Thread 0x000000002a095000 5301       3       java.lang.reflect.Field::checkCanSetAccessible (10 bytes)
+Event: 156.599 Thread 0x000000002a095000 nmethod 5301 0x0000000006e1ec90 code [0x0000000006e1ee60, 0x0000000006e1efe8]
+Event: 156.619 Thread 0x000000002a095000 5302       3       com.intellij.diagnostic.LoadingState::checkOccurred (38 bytes)
+Event: 156.619 Thread 0x000000002a095000 nmethod 5302 0x0000000006e1f110 code [0x0000000006e1f300, 0x0000000006e1f688]
+Event: 156.625 Thread 0x000000002a095000 5303       1       com.intellij.util.lang.Resource::getProtectionDomain (2 bytes)
+Event: 156.625 Thread 0x000000002a095000 nmethod 5303 0x00000000162a2890 code [0x00000000162a2a40, 0x00000000162a2af8]
+Event: 156.641 Thread 0x000000002a095000 5304       3       com.intellij.openapi.fileTypes.LanguageFileType::getLanguage (13 bytes)
+Event: 156.642 Thread 0x000000002a095000 nmethod 5304 0x0000000006e1f810 code [0x0000000006e1f9c0, 0x0000000006e1fb48]
+Event: 156.737 Thread 0x000000002a095000 5305       3       com.intellij.util.lang.JarLoader::releaseZipFile (24 bytes)
+Event: 156.739 Thread 0x000000002a095000 nmethod 5305 0x0000000006e1fc10 code [0x0000000006e1fde0, 0x0000000006e20058]
+Event: 156.745 Thread 0x000000002a095000 5306   !   3       com.intellij.util.lang.JarLoader::getZipFile (149 bytes)
+Event: 156.749 Thread 0x000000002a095000 nmethod 5306 0x0000000006e20190 code [0x0000000006e20420, 0x0000000006e21238]
+Event: 156.759 Thread 0x000000002a095000 5307       3       java.security.ProtectionDomain$Key::<init> (10 bytes)
+Event: 156.760 Thread 0x000000002a095000 nmethod 5307 0x0000000006e21610 code [0x0000000006e217c0, 0x0000000006e21938]
+Event: 156.777 Thread 0x000000002a095000 5308       1       com.intellij.util.lang.JarLoader::access$100 (5 bytes)
+Event: 156.777 Thread 0x000000002a095000 nmethod 5308 0x00000000162a2b90 code [0x00000000162a2d40, 0x00000000162a2dd8]
+Event: 156.781 Thread 0x000000002a095000 5309       3       com.intellij.ui.scale.UserScaleContext::addUpdateListener (43 bytes)
+
+GC Heap History (13 events):
+Event: 26.430 GC heap before
+{Heap before GC invocations=0 (full 0):
+ par new generation   total 39296K, used 34944K [0x00000000d1200000, 0x00000000d3ca0000, 0x00000000e0c00000)
+  eden space 34944K, 100% used [0x00000000d1200000, 0x00000000d3420000, 0x00000000d3420000)
+  from space 4352K,   0% used [0x00000000d3420000, 0x00000000d3420000, 0x00000000d3860000)
+  to   space 4352K,   0% used [0x00000000d3860000, 0x00000000d3860000, 0x00000000d3ca0000)
+ concurrent mark-sweep generation total 87424K, used 0K [0x00000000e0c00000, 0x00000000e6160000, 0x0000000100000000)
+ Metaspace       used 8580K, capacity 8759K, committed 9088K, reserved 1056768K
+  class space    used 761K, capacity 814K, committed 896K, reserved 1048576K
+}
+Event: 26.598 GC heap after
+{Heap after GC invocations=1 (full 0):
+ par new generation   total 39296K, used 4350K [0x00000000d1200000, 0x00000000d3ca0000, 0x00000000e0c00000)
+  eden space 34944K,   0% used [0x00000000d1200000, 0x00000000d1200000, 0x00000000d3420000)
+  from space 4352K,  99% used [0x00000000d3860000, 0x00000000d3c9fbd0, 0x00000000d3ca0000)
+  to   space 4352K,   0% used [0x00000000d3420000, 0x00000000d3420000, 0x00000000d3860000)
+ concurrent mark-sweep generation total 87424K, used 11530K [0x00000000e0c00000, 0x00000000e6160000, 0x0000000100000000)
+ Metaspace       used 8580K, capacity 8759K, committed 9088K, reserved 1056768K
+  class space    used 761K, capacity 814K, committed 896K, reserved 1048576K
+}
+Event: 41.053 GC heap before
+{Heap before GC invocations=1 (full 0):
+ par new generation   total 39296K, used 39294K [0x00000000d1200000, 0x00000000d3ca0000, 0x00000000e0c00000)
+  eden space 34944K, 100% used [0x00000000d1200000, 0x00000000d3420000, 0x00000000d3420000)
+  from space 4352K,  99% used [0x00000000d3860000, 0x00000000d3c9fbd0, 0x00000000d3ca0000)
+  to   space 4352K,   0% used [0x00000000d3420000, 0x00000000d3420000, 0x00000000d3860000)
+ concurrent mark-sweep generation total 87424K, used 11530K [0x00000000e0c00000, 0x00000000e6160000, 0x0000000100000000)
+ Metaspace       used 19229K, capacity 19803K, committed 19968K, reserved 1067008K
+  class space    used 1969K, capacity 2240K, committed 2304K, reserved 1048576K
+}
+Event: 41.102 GC heap after
+{Heap after GC invocations=2 (full 0):
+ par new generation   total 39296K, used 4352K [0x00000000d1200000, 0x00000000d3ca0000, 0x00000000e0c00000)
+  eden space 34944K,   0% used [0x00000000d1200000, 0x00000000d1200000, 0x00000000d3420000)
+  from space 4352K, 100% used [0x00000000d3420000, 0x00000000d3860000, 0x00000000d3860000)
+  to   space 4352K,   0% used [0x00000000d3860000, 0x00000000d3860000, 0x00000000d3ca0000)
+ concurrent mark-sweep generation total 87424K, used 25974K [0x00000000e0c00000, 0x00000000e6160000, 0x0000000100000000)
+ Metaspace       used 19229K, capacity 19803K, committed 19968K, reserved 1067008K
+  class space    used 1969K, capacity 2240K, committed 2304K, reserved 1048576K
+}
+Event: 92.035 GC heap before
+{Heap before GC invocations=2 (full 1):
+ par new generation   total 39296K, used 39296K [0x00000000d1200000, 0x00000000d3ca0000, 0x00000000e0c00000)
+  eden space 34944K, 100% used [0x00000000d1200000, 0x00000000d3420000, 0x00000000d3420000)
+  from space 4352K, 100% used [0x00000000d3420000, 0x00000000d3860000, 0x00000000d3860000)
+  to   space 4352K,   0% used [0x00000000d3860000, 0x00000000d3860000, 0x00000000d3ca0000)
+ concurrent mark-sweep generation total 87424K, used 24462K [0x00000000e0c00000, 0x00000000e6160000, 0x0000000100000000)
+ Metaspace       used 24651K, capacity 25340K, committed 25616K, reserved 1073152K
+  class space    used 2612K, capacity 2915K, committed 2944K, reserved 1048576K
+}
+Event: 92.057 GC heap after
+{Heap after GC invocations=3 (full 1):
+ par new generation   total 39296K, used 4352K [0x00000000d1200000, 0x00000000d3ca0000, 0x00000000e0c00000)
+  eden space 34944K,   0% used [0x00000000d1200000, 0x00000000d1200000, 0x00000000d3420000)
+  from space 4352K, 100% used [0x00000000d3860000, 0x00000000d3ca0000, 0x00000000d3ca0000)
+  to   space 4352K,   0% used [0x00000000d3420000, 0x00000000d3420000, 0x00000000d3860000)
+ concurrent mark-sweep generation total 87424K, used 34182K [0x00000000e0c00000, 0x00000000e6160000, 0x0000000100000000)
+ Metaspace       used 24651K, capacity 25340K, committed 25616K, reserved 1073152K
+  class space    used 2612K, capacity 2915K, committed 2944K, reserved 1048576K
+}
+Event: 110.618 GC heap before
+{Heap before GC invocations=3 (full 1):
+ par new generation   total 39296K, used 39296K [0x00000000d1200000, 0x00000000d3ca0000, 0x00000000e0c00000)
+  eden space 34944K, 100% used [0x00000000d1200000, 0x00000000d3420000, 0x00000000d3420000)
+  from space 4352K, 100% used [0x00000000d3860000, 0x00000000d3ca0000, 0x00000000d3ca0000)
+  to   space 4352K,   0% used [0x00000000d3420000, 0x00000000d3420000, 0x00000000d3860000)
+ concurrent mark-sweep generation total 87424K, used 34182K [0x00000000e0c00000, 0x00000000e6160000, 0x0000000100000000)
+ Metaspace       used 33026K, capacity 34022K, committed 34320K, reserved 1079296K
+  class space    used 3479K, capacity 3909K, committed 3968K, reserved 1048576K
+}
+Event: 110.646 GC heap after
+{Heap after GC invocations=4 (full 1):
+ par new generation   total 39296K, used 4352K [0x00000000d1200000, 0x00000000d3ca0000, 0x00000000e0c00000)
+  eden space 34944K,   0% used [0x00000000d1200000, 0x00000000d1200000, 0x00000000d3420000)
+  from space 4352K, 100% used [0x00000000d3420000, 0x00000000d3860000, 0x00000000d3860000)
+  to   space 4352K,   0% used [0x00000000d3860000, 0x00000000d3860000, 0x00000000d3ca0000)
+ concurrent mark-sweep generation total 87424K, used 42206K [0x00000000e0c00000, 0x00000000e6160000, 0x0000000100000000)
+ Metaspace       used 33026K, capacity 34022K, committed 34320K, reserved 1079296K
+  class space    used 3479K, capacity 3909K, committed 3968K, reserved 1048576K
+}
+Event: 134.286 GC heap before
+{Heap before GC invocations=4 (full 2):
+ par new generation   total 39296K, used 39296K [0x00000000d1200000, 0x00000000d3ca0000, 0x00000000e0c00000)
+  eden space 34944K, 100% used [0x00000000d1200000, 0x00000000d3420000, 0x00000000d3420000)
+  from space 4352K, 100% used [0x00000000d3420000, 0x00000000d3860000, 0x00000000d3860000)
+  to   space 4352K,   0% used [0x00000000d3860000, 0x00000000d3860000, 0x00000000d3ca0000)
+ concurrent mark-sweep generation total 87424K, used 42206K [0x00000000e0c00000, 0x00000000e6160000, 0x0000000100000000)
+ Metaspace       used 43997K, capacity 45131K, committed 45288K, reserved 1089536K
+  class space    used 4606K, capacity 5098K, committed 5196K, reserved 1048576K
+}
+Event: 134.324 GC heap after
+{Heap after GC invocations=5 (full 2):
+ par new generation   total 39296K, used 4352K [0x00000000d1200000, 0x00000000d3ca0000, 0x00000000e0c00000)
+  eden space 34944K,   0% used [0x00000000d1200000, 0x00000000d1200000, 0x00000000d3420000)
+  from space 4352K, 100% used [0x00000000d3860000, 0x00000000d3ca0000, 0x00000000d3ca0000)
+  to   space 4352K,   0% used [0x00000000d3420000, 0x00000000d3420000, 0x00000000d3860000)
+ concurrent mark-sweep generation total 87424K, used 51761K [0x00000000e0c00000, 0x00000000e6160000, 0x0000000100000000)
+ Metaspace       used 43997K, capacity 45131K, committed 45288K, reserved 1089536K
+  class space    used 4606K, capacity 5098K, committed 5196K, reserved 1048576K
+}
+Event: 141.772 GC heap before
+{Heap before GC invocations=5 (full 2):
+ par new generation   total 39296K, used 39296K [0x00000000d1200000, 0x00000000d3ca0000, 0x00000000e0c00000)
+  eden space 34944K, 100% used [0x00000000d1200000, 0x00000000d3420000, 0x00000000d3420000)
+  from space 4352K, 100% used [0x00000000d3860000, 0x00000000d3ca0000, 0x00000000d3ca0000)
+  to   space 4352K,   0% used [0x00000000d3420000, 0x00000000d3420000, 0x00000000d3860000)
+ concurrent mark-sweep generation total 87424K, used 41686K [0x00000000e0c00000, 0x00000000e6160000, 0x0000000100000000)
+ Metaspace       used 52161K, capacity 53475K, committed 53700K, reserved 1097728K
+  class space    used 5497K, capacity 6026K, committed 6116K, reserved 1048576K
+}
+Event: 141.790 GC heap after
+{Heap after GC invocations=6 (full 2):
+ par new generation   total 39296K, used 4352K [0x00000000d1200000, 0x00000000d3ca0000, 0x00000000e0c00000)
+  eden space 34944K,   0% used [0x00000000d1200000, 0x00000000d1200000, 0x00000000d3420000)
+  from space 4352K, 100% used [0x00000000d3420000, 0x00000000d3860000, 0x00000000d3860000)
+  to   space 4352K,   0% used [0x00000000d3860000, 0x00000000d3860000, 0x00000000d3ca0000)
+ concurrent mark-sweep generation total 87424K, used 47353K [0x00000000e0c00000, 0x00000000e6160000, 0x0000000100000000)
+ Metaspace       used 52161K, capacity 53475K, committed 53700K, reserved 1097728K
+  class space    used 5497K, capacity 6026K, committed 6116K, reserved 1048576K
+}
+Event: 156.782 GC heap before
+{Heap before GC invocations=6 (full 2):
+ par new generation   total 39296K, used 37956K [0x00000000d1200000, 0x00000000d3ca0000, 0x00000000e0c00000)
+  eden space 34944K,  96% used [0x00000000d1200000, 0x00000000d32d1260, 0x00000000d3420000)
+  from space 4352K, 100% used [0x00000000d3420000, 0x00000000d3860000, 0x00000000d3860000)
+  to   space 4352K,   0% used [0x00000000d3860000, 0x00000000d3860000, 0x00000000d3ca0000)
+ concurrent mark-sweep generation total 87424K, used 47353K [0x00000000e0c00000, 0x00000000e6160000, 0x0000000100000000)
+ Metaspace       used 59703K, capacity 61834K, committed 62020K, reserved 1112064K
+  class space    used 6557K, capacity 7398K, committed 7524K, reserved 1048576K
+}
+
+Deoptimization events (20 events):
+Event: 152.167 Thread 0x000000002f788800 Uncommon trap: trap_request=0xffffffde fr.pc=0x000000001629a0a8 relative=0x0000000000000108
+Event: 152.167 Thread 0x000000002f788800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x000000001629a0a8 method=jdk.internal.misc.Unsafe.allocateUninitializedArray(Ljava/lang/Class;I)Ljava/lang/Object; @ 48 c2
+Event: 152.168 Thread 0x000000002f788800 DEOPT PACKING pc=0x000000001629a0a8 sp=0x0000000033c9c990
+Event: 152.168 Thread 0x000000002f788800 DEOPT UNPACKING pc=0x0000000005d66c2f sp=0x0000000033c9c918 mode 2
+Event: 153.700 Thread 0x000000002b139800 Uncommon trap: trap_request=0xffffffde fr.pc=0x0000000016296e64 relative=0x0000000000000a04
+Event: 153.700 Thread 0x000000002b139800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000016296e64 method=com.intellij.util.containers.JBIterator$FilterOp.apply(Ljava/lang/Object;)Ljava/lang/Object; @ 4 c2
+Event: 153.700 Thread 0x000000002b139800 DEOPT PACKING pc=0x0000000016296e64 sp=0x000000003088c970
+Event: 153.700 Thread 0x000000002b139800 DEOPT UNPACKING pc=0x0000000005d66c2f sp=0x000000003088c940 mode 2
+Event: 153.700 Thread 0x000000002b139800 Uncommon trap: trap_request=0xffffffde fr.pc=0x0000000016296e64 relative=0x0000000000000a04
+Event: 153.700 Thread 0x000000002b139800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000016296e64 method=com.intellij.util.containers.JBIterator$FilterOp.apply(Ljava/lang/Object;)Ljava/lang/Object; @ 4 c2
+Event: 153.700 Thread 0x000000002b139800 DEOPT PACKING pc=0x0000000016296e64 sp=0x000000003088c970
+Event: 153.700 Thread 0x000000002b139800 DEOPT UNPACKING pc=0x0000000005d66c2f sp=0x000000003088c940 mode 2
+Event: 153.700 Thread 0x000000002b139800 Uncommon trap: trap_request=0xffffffde fr.pc=0x0000000016296e64 relative=0x0000000000000a04
+Event: 153.700 Thread 0x000000002b139800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000016296e64 method=com.intellij.util.containers.JBIterator$FilterOp.apply(Ljava/lang/Object;)Ljava/lang/Object; @ 4 c2
+Event: 153.700 Thread 0x000000002b139800 DEOPT PACKING pc=0x0000000016296e64 sp=0x000000003088c970
+Event: 153.700 Thread 0x000000002b139800 DEOPT UNPACKING pc=0x0000000005d66c2f sp=0x000000003088c940 mode 2
+Event: 153.700 Thread 0x000000002b139800 Uncommon trap: trap_request=0xffffffde fr.pc=0x0000000016296e64 relative=0x0000000000000a04
+Event: 153.700 Thread 0x000000002b139800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000016296e64 method=com.intellij.util.containers.JBIterator$FilterOp.apply(Ljava/lang/Object;)Ljava/lang/Object; @ 4 c2
+Event: 153.700 Thread 0x000000002b139800 DEOPT PACKING pc=0x0000000016296e64 sp=0x000000003088c970
+Event: 153.700 Thread 0x000000002b139800 DEOPT UNPACKING pc=0x0000000005d66c2f sp=0x000000003088c940 mode 2
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (20 events):
+Event: 149.133 Thread 0x000000002a2db000 Exception <a 'sun/nio/fs/WindowsException'{0x00000000d264e880}> (0x00000000d264e880) thrown at [./src/hotspot/share/prims/jni.cpp, line 615]
+Event: 149.179 Thread 0x000000002f788800 Exception <a 'sun/nio/fs/WindowsException'{0x00000000d2641f68}> (0x00000000d2641f68) thrown at [./src/hotspot/share/prims/jni.cpp, line 615]
+Event: 149.678 Thread 0x000000002b277000 Exception <a 'sun/nio/fs/WindowsException'{0x00000000d1c99eb8}> (0x00000000d1c99eb8) thrown at [./src/hotspot/share/prims/jni.cpp, line 615]
+Event: 149.678 Thread 0x000000002b277000 Exception <a 'sun/nio/fs/WindowsException'{0x00000000d1c9a210}> (0x00000000d1c9a210) thrown at [./src/hotspot/share/prims/jni.cpp, line 615]
+Event: 149.862 Thread 0x000000002b277000 Exception <a 'sun/nio/fs/WindowsException'{0x00000000d26fd0f8}> (0x00000000d26fd0f8) thrown at [./src/hotspot/share/prims/jni.cpp, line 615]
+Event: 149.863 Thread 0x000000002b277000 Exception <a 'sun/nio/fs/WindowsException'{0x00000000d26fdb40}> (0x00000000d26fdb40) thrown at [./src/hotspot/share/prims/jni.cpp, line 615]
+Event: 149.863 Thread 0x000000002b277000 Exception <a 'sun/nio/fs/WindowsException'{0x00000000d26fdf80}> (0x00000000d26fdf80) thrown at [./src/hotspot/share/prims/jni.cpp, line 615]
+Event: 150.619 Thread 0x000000002a292800 Exception <a 'java/lang/UnsatisfiedLinkError'{0x00000000d2c0a518}: The specified procedure could not be found.
+> (0x00000000d2c0a518) thrown at [./src/hotspot/share/prims/jni.cpp, line 636]
+Event: 150.621 Thread 0x000000002a292800 Exception <a 'java/lang/NoSuchMethodError'{0x00000000d2c0c1c0}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, int, java.lang.Object, java.lang.Object)'> (0x00000000d2c0c1c0) thrown at [./src/hotspot/share/interpreter/linkResolver.cpp, line 773]
+Event: 150.643 Thread 0x000000002b277000 Exception <a 'sun/nio/fs/WindowsException'{0x00000000d270b058}> (0x00000000d270b058) thrown at [./src/hotspot/share/prims/jni.cpp, line 615]
+Event: 150.815 Thread 0x000000002f788800 Exception <a 'sun/nio/fs/WindowsException'{0x00000000d2cd0d38}> (0x00000000d2cd0d38) thrown at [./src/hotspot/share/prims/jni.cpp, line 615]
+Event: 150.856 Thread 0x000000002b139800 Exception <a 'sun/nio/fs/WindowsException'{0x00000000d2cebad8}> (0x00000000d2cebad8) thrown at [./src/hotspot/share/prims/jni.cpp, line 615]
+Event: 151.764 Thread 0x000000002b277000 Exception <a 'sun/nio/fs/WindowsException'{0x00000000d2df65d0}> (0x00000000d2df65d0) thrown at [./src/hotspot/share/prims/jni.cpp, line 615]
+Event: 153.088 Thread 0x000000002b277000 Exception <a 'sun/nio/fs/WindowsException'{0x00000000d2ed8378}> (0x00000000d2ed8378) thrown at [./src/hotspot/share/prims/jni.cpp, line 615]
+Event: 153.089 Thread 0x000000002b277000 Exception <a 'sun/nio/fs/WindowsException'{0x00000000d2ed8da0}> (0x00000000d2ed8da0) thrown at [./src/hotspot/share/prims/jni.cpp, line 615]
+Event: 153.089 Thread 0x000000002b277000 Exception <a 'sun/nio/fs/WindowsException'{0x00000000d2ed91d0}> (0x00000000d2ed91d0) thrown at [./src/hotspot/share/prims/jni.cpp, line 615]
+Event: 153.314 Thread 0x000000002b139800 Exception <a 'java/lang/NoSuchMethodError'{0x00000000d2f14850}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeVirtual(java.lang.Object, java.lang.Object)'> (0x00000000d2f14850) thrown at [./src/hotspot/share/interpreter/linkResolver.cpp, line 773]
+Event: 153.316 Thread 0x000000002b139800 Exception <a 'java/lang/NoSuchMethodError'{0x00000000d2f1abe0}: 'void java.lang.invoke.DirectMethodHandle$Holder.invokeVirtual(java.lang.Object, java.lang.Object, int)'> (0x00000000d2f1abe0) thrown at [./src/hotspot/share/interpreter/linkResolver.cpp, line 773]
+Event: 153.481 Thread 0x000000002b277000 Exception <a 'sun/nio/fs/WindowsException'{0x00000000d2ee7be8}> (0x00000000d2ee7be8) thrown at [./src/hotspot/share/prims/jni.cpp, line 615]
+Event: 154.870 Thread 0x000000002b277000 Exception <a 'sun/nio/fs/WindowsException'{0x00000000d300bdb0}> (0x00000000d300bdb0) thrown at [./src/hotspot/share/prims/jni.cpp, line 615]
+
+Events (20 events):
+Event: 156.630 Executing VM operation: RevokeBias done
+Event: 156.634 loading class com/intellij/psi/tree/OuterLanguageElementType
+Event: 156.634 loading class com/intellij/psi/tree/OuterLanguageElementType done
+Event: 156.634 loading class com/intellij/psi/tree/ILeafElementType
+Event: 156.634 loading class com/intellij/psi/tree/ILeafElementType done
+Event: 156.637 loading class com/intellij/psi/tree/ICompositeElementType
+Event: 156.637 loading class com/intellij/psi/tree/ICompositeElementType done
+Event: 156.637 loading class com/intellij/psi/tree/IReparseableElementType
+Event: 156.637 loading class com/intellij/psi/tree/IReparseableElementType done
+Event: 156.637 loading class com/intellij/psi/tree/IReparseableElementTypeBase
+Event: 156.637 loading class com/intellij/psi/tree/IReparseableElementTypeBase done
+Event: 156.729 loading class com/intellij/psi/stubs/StubOutputStream
+Event: 156.729 loading class com/intellij/psi/stubs/StubOutputStream done
+Event: 156.730 loading class com/intellij/psi/stubs/StubInputStream
+Event: 156.730 loading class com/intellij/psi/stubs/StubInputStream done
+Event: 156.731 loading class com/intellij/psi/stubs/IndexSink
+Event: 156.731 loading class com/intellij/psi/stubs/IndexSink done
+Event: 156.773 Executing VM operation: RevokeBias
+Event: 156.774 Executing VM operation: RevokeBias done
+Event: 156.781 Executing VM operation: CollectForMetadataAllocation
+
+
+Dynamic libraries:
+0x0000000140000000 - 0x0000000140146000 	C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\bin\pycharm64.exe
+0x00007fffc77c0000 - 0x00007fffc79b0000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007fffc6350000 - 0x00007fffc6402000 	C:\Windows\System32\KERNEL32.DLL
+0x00007fffc5040000 - 0x00007fffc52e5000 	C:\Windows\System32\KERNELBASE.dll
+0x00007fffc5980000 - 0x00007fffc5b14000 	C:\Windows\System32\USER32.dll
+0x00007fffc53e0000 - 0x00007fffc5401000 	C:\Windows\System32\win32u.dll
+0x00007fffc7680000 - 0x00007fffc76a6000 	C:\Windows\System32\GDI32.dll
+0x00007fffc56d0000 - 0x00007fffc5868000 	C:\Windows\System32\gdi32full.dll
+0x00007fffc5320000 - 0x00007fffc53be000 	C:\Windows\System32\msvcp_win.dll
+0x00007fffc4730000 - 0x00007fffc482a000 	C:\Windows\System32\ucrtbase.dll
+0x00007fffc6e40000 - 0x00007fffc6ee3000 	C:\Windows\System32\ADVAPI32.dll
+0x00007fffc7570000 - 0x00007fffc760e000 	C:\Windows\System32\msvcrt.dll
+0x00007fffc5880000 - 0x00007fffc5917000 	C:\Windows\System32\sechost.dll
+0x00007fffc73e0000 - 0x00007fffc74ff000 	C:\Windows\System32\RPCRT4.dll
+0x00007fffc6550000 - 0x00007fffc6c38000 	C:\Windows\System32\SHELL32.dll
+0x00007fffc5570000 - 0x00007fffc55ba000 	C:\Windows\System32\cfgmgr32.dll
+0x00007fffc6180000 - 0x00007fffc6227000 	C:\Windows\System32\shcore.dll
+0x00007fffc5cd0000 - 0x00007fffc6006000 	C:\Windows\System32\combase.dll
+0x00007fffc4830000 - 0x00007fffc48b1000 	C:\Windows\System32\bcryptPrimitives.dll
+0x00007fffc48c0000 - 0x00007fffc503b000 	C:\Windows\System32\windows.storage.dll
+0x00007fffc46a0000 - 0x00007fffc46be000 	C:\Windows\System32\profapi.dll
+0x00007fffc46e0000 - 0x00007fffc472a000 	C:\Windows\System32\powrprof.dll
+0x00007fffc4670000 - 0x00007fffc4680000 	C:\Windows\System32\UMPDC.dll
+0x00007fffc5920000 - 0x00007fffc5972000 	C:\Windows\System32\shlwapi.dll
+0x00007fffc4680000 - 0x00007fffc4691000 	C:\Windows\System32\kernel.appcore.dll
+0x00007fffc53c0000 - 0x00007fffc53d7000 	C:\Windows\System32\cryptsp.dll
+0x00007fffc6010000 - 0x00007fffc6167000 	C:\Windows\System32\ole32.dll
+0x00007fffc6320000 - 0x00007fffc634e000 	C:\Windows\System32\IMM32.DLL
+0x00007fff1fe00000 - 0x00007fff208ce000 	C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\bin\server\jvm.dll
+0x00007fffc5870000 - 0x00007fffc5878000 	C:\Windows\System32\PSAPI.DLL
+0x00007fffbb9b0000 - 0x00007fffbb9ba000 	C:\Windows\SYSTEM32\VERSION.dll
+0x00007fffbf6a0000 - 0x00007fffbf6c4000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007fffc14e0000 - 0x00007fffc14e9000 	C:\Windows\SYSTEM32\WSOCK32.dll
+0x00007fffc7610000 - 0x00007fffc767f000 	C:\Windows\System32\WS2_32.dll
+0x00007fffbf670000 - 0x00007fffbf69d000 	C:\Windows\SYSTEM32\winmmbase.dll
+0x00007fffc0d70000 - 0x00007fffc0d89000 	C:\Windows\SYSTEM32\VCRUNTIME140.dll
+0x00007fffa6ee0000 - 0x00007fffa6ef1000 	C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\bin\verify.dll
+0x00007fffbf0b0000 - 0x00007fffbf2a4000 	C:\Windows\SYSTEM32\DBGHELP.DLL
+0x00007fffbea90000 - 0x00007fffbeaba000 	C:\Windows\SYSTEM32\dbgcore.DLL
+0x00007fffa47c0000 - 0x00007fffa47e9000 	C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\bin\java.dll
+0x00007fffc0860000 - 0x00007fffc086b000 	C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\bin\jimage.dll
+0x00007fffa6500000 - 0x00007fffa6518000 	C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\bin\zip.dll
+0x00007fffa6290000 - 0x00007fffa62aa000 	C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\bin\net.dll
+0x00007fffbe7e0000 - 0x00007fffbe8da000 	C:\Windows\SYSTEM32\WINHTTP.dll
+0x00007fffc3e50000 - 0x00007fffc3eb7000 	C:\Windows\system32\mswsock.dll
+0x00007fffa5830000 - 0x00007fffa5844000 	C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\bin\nio.dll
+0x00007fffbec90000 - 0x00007fffbec9a000 	C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\bin\management.dll
+0x00007fff86520000 - 0x00007fff866c4000 	C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\bin\awt.dll
+0x00007fffc6230000 - 0x00007fffc62f5000 	C:\Windows\System32\OLEAUT32.dll
+0x00007fffc2ee0000 - 0x00007fffc2f0d000 	C:\Windows\SYSTEM32\dwmapi.dll
+0x00007fff7d3b0000 - 0x00007fff7d442000 	C:\Windows\SYSTEM32\MSVCP140.dll
+0x00007fff7d380000 - 0x00007fff7d38c000 	C:\Windows\SYSTEM32\VCRUNTIME140_1.dll
+0x00007fffc2700000 - 0x00007fffc278f000 	C:\Windows\SYSTEM32\apphelp.dll
+0x00007fffbe2e0000 - 0x00007fffbe2ec000 	C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\bin\management_ext.dll
+0x00007fffc39d0000 - 0x00007fffc3a03000 	C:\Windows\system32\rsaenh.dll
+0x00007fffc52f0000 - 0x00007fffc5316000 	C:\Windows\System32\bcrypt.dll
+0x00007fffc4560000 - 0x00007fffc4585000 	C:\Windows\SYSTEM32\USERENV.dll
+0x00007fffbe2c0000 - 0x00007fffbe2ca000 	C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\bin\prefs.dll
+0x00007fffafcf0000 - 0x00007fffafd99000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_5.82.18362.1500_none_73b83420d8116b99\COMCTL32.dll
+0x00007fffc4020000 - 0x00007fffc402c000 	C:\Windows\SYSTEM32\CRYPTBASE.dll
+0x00007fffc29b0000 - 0x00007fffc2a49000 	C:\Windows\system32\uxtheme.dll
+0x00007fffc6410000 - 0x00007fffc6545000 	C:\Windows\System32\MSCTF.dll
+0x00007fffc3b60000 - 0x00007fffc3b9a000 	C:\Windows\SYSTEM32\IPHLPAPI.DLL
+0x00007fffc6170000 - 0x00007fffc6178000 	C:\Windows\System32\NSI.dll
+0x00007fffbe750000 - 0x00007fffbe766000 	C:\Windows\SYSTEM32\dhcpcsvc6.DLL
+0x00007fffbe730000 - 0x00007fffbe74c000 	C:\Windows\SYSTEM32\dhcpcsvc.DLL
+0x00007fffc3ba0000 - 0x00007fffc3c6b000 	C:\Windows\SYSTEM32\DNSAPI.dll
+0x00007fff9b140000 - 0x00007fff9b1c5000 	C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\bin\freetype.dll
+0x00007fff96c10000 - 0x00007fff96cb9000 	C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\bin\fontmanager.dll
+0x00007fffa13d0000 - 0x00007fffa1526000 	C:\Windows\system32\opengl32.dll
+0x00007fffa5b60000 - 0x00007fffa5b8c000 	C:\Windows\SYSTEM32\GLU32.dll
+0x00007fffc3320000 - 0x00007fffc3340000 	C:\Windows\SYSTEM32\dxcore.dll
+0x00007fff9e670000 - 0x00007fff9e6b1000 	C:\Users\VEDIT\AppData\Local\JetBrains\PyCharmCE2020.3\tmp\jna12664222815677130943.dll
+0x00007fffa4980000 - 0x00007fffa499b000 	C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\bin\IdeaWin64.dll
+0x00007fffa3720000 - 0x00007fffa3748000 	C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\bin\sunec.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\bin;C:\Windows\SYSTEM32;C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\bin\server;C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\bin;C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_5.82.18362.1500_none_73b83420d8116b99;C:\Users\VEDIT\AppData\Local\JetBrains\PyCharmCE2020.3\tmp
+
+VM Arguments:
+jvm_args: exit -Xms128m -Xmx750m -XX:ReservedCodeCacheSize=512m -XX:+UseConcMarkSweepGC -XX:SoftRefLRUPolicyMSPerMB=50 -XX:CICompilerCount=2 -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -ea -Dsun.io.useCanonCaches=false -Djdk.http.auth.tunneling.disabledSchemes="" -Djdk.attach.allowAttachSelf=true -Djdk.module.illegalAccess.silent=true -Dkotlinx.coroutines.debug=off -Djb.vmOptionsFile=C:\Users\VEDIT\AppData\Roaming\JetBrains\PyCharmCE2020.3\pycharm64.exe.vmoptions -Djava.library.path=C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\\bin;C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\jbr\\bin\server -Didea.platform.prefix=PyCharmCore -Dide.native.launcher=true -Didea.vendor.name=JetBrains -Didea.paths.selector=PyCharmCE2020.3 -XX:ErrorFile=C:\Users\VEDIT\java_error_in_pycharm64_%p.log -XX:HeapDumpPath=C:\Users\VEDIT\java_error_in_pycharm64.hprof 
+java_command: <unknown>
+java_class_path (initial): C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\lib\bootstrap.jar;C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\lib\extensions.jar;C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\lib\util.jar;C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\lib\jdom.jar;C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\lib\log4j.jar;C:\Program Files\JetBrains\PyCharm Community Edition 2020.3\lib\jna.jar
+Launcher Type: generic
+
+[Global flags]
+     intx CICompilerCount                          = 2                                         {product} {command line}
+    ccstr ErrorFile                                = C:\Users\VEDIT\java_error_in_pycharm64_%p.log            {product} {command line}
+     bool HeapDumpOnOutOfMemoryError               = true                                   {manageable} {command line}
+    ccstr HeapDumpPath                             = C:\Users\VEDIT\java_error_in_pycharm64.hprof         {manageable} {command line}
+   size_t InitialHeapSize                          = 134217728                                 {product} {command line}
+   size_t MaxHeapSize                              = 786432000                                 {product} {command line}
+   size_t MaxNewSize                               = 262144000                                 {product} {ergonomic}
+    uintx MaxTenuringThreshold                     = 6                                         {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 196608                                    {product} {ergonomic}
+   size_t NewSize                                  = 44695552                                  {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5825164                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 265522874                              {pd product} {ergonomic}
+   size_t OldSize                                  = 89522176                                  {product} {ergonomic}
+     bool OmitStackTraceInFastThrow                = false                                     {product} {command line}
+    uintx ProfiledCodeHeapSize                     = 265522874                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 536870912                              {pd product} {command line}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     intx SoftRefLRUPolicyMSPerMB                  = 50                                        {product} {command line}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseConcMarkSweepGC                       = true                                      {product} {command line}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+PATH=C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Users\VEDIT\AppData\Local\Programs\Python\Python39\Scripts;C:\Users\VEDIT\AppData\Local\Programs\Python\Python39;C:\Users\VEDIT\anaconda3\Scripts;C:\Users\VEDIT\anaconda3;C:\Users\VEDIT\anaconda3\Library\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\MinGW\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Falcon\MinGW\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Java\jdk-15.0.1\bin;C:\Python34\Scripts;C:\Users\VEDIT\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.3.1\bin;;C:\Users\VEDIT\AppData\Roaming\npm;C:\hadoop\bin;C:\apache-spark\spark-3.1.1-bin-hadoop2.7\spark-3.1.1-bin-hadoop2.7\bin;
+USERNAME=VEDIT
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10 , 64 bit Build 18362 (10.0.18362.1500)
+OS uptime: 3 days 18:06 hours
+
+CPU:total 4 (initial active 4) (2 cores per cpu, 2 threads per core) family 6 model 58 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, aes, clmul, erms, ht, tsc, tscinvbit, tscinv
+
+Memory: 4k page, system-wide physical 3955M (280M free)
+TotalPageFile size 16243M (AvailPageFile size 28M)
+current process WorkingSet (physical memory assigned to process): 268M, peak: 293M
+current process commit charge ("private bytes"): 318M, peak: 343M
+
+vm_info: OpenJDK 64-Bit Server VM (11.0.9+11-b1145.21) for windows-amd64 JRE (11.0.9+11-b1145.21), built on Nov 21 2020 14:37:09 by "" with MS VC++ 14.0 (VS2015)
+
+END.
